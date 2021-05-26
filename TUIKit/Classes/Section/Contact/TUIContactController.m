@@ -37,20 +37,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSMutableArray *list = @[].mutableCopy;
-    [list addObject:({
-        TUIContactActionCellData *data = [[TUIContactActionCellData alloc] init];
-        data.icon = [UIImage imageNamed:TUIKitResource(@"new_friend")];
-        data.title = TUILocalizableString(TUIKitContactsNewFriends); // @"新的联系人";
-        data.cselector = @selector(onAddNewFriend:);
-        data;
-    })];
-    [list addObject:({
-        TUIContactActionCellData *data = [[TUIContactActionCellData alloc] init];
-        data.icon = [UIImage imageNamed:TUIKitResource(@"public_group")];
-        data.title = TUILocalizableString(TUIKitContactsGroupChats); // @"群聊";
-        data.cselector = @selector(onGroupConversation:);
-        data;
-    })];
+    // [list addObject:({
+    //     TUIContactActionCellData *data = [[TUIContactActionCellData alloc] init];
+    //     data.icon = [UIImage imageNamed:TUIKitResource(@"new_friend")];
+    //     data.title = TUILocalizableString(TUIKitContactsNewFriends); // @"新的联系人";
+    //     data.cselector = @selector(onAddNewFriend:);
+    //     data;
+    // })];
+    // [list addObject:({
+    //     TUIContactActionCellData *data = [[TUIContactActionCellData alloc] init];
+    //     data.icon = [UIImage imageNamed:TUIKitResource(@"public_group")];
+    //     data.title = TUILocalizableString(TUIKitContactsGroupChats); // @"群聊";
+    //     data.cselector = @selector(onGroupConversation:);
+    //     data;
+    // })];
     [list addObject:({
         TUIContactActionCellData *data = [[TUIContactActionCellData alloc] init];
         data.icon = [UIImage imageNamed:TUIKitResource(@"blacklist")];
