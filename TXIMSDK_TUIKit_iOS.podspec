@@ -8,8 +8,8 @@ Pod::Spec.new do |spec|
         copyright 2017 tencent Ltd. All rights reserved.
         LICENSE
        }
-#   spec.homepage     = 'https://cloud.tencent.com/document/product/269/3794'
-#   spec.documentation_url = 'https://cloud.tencent.com/document/product/269/9147'
+  spec.homepage     = 'https://cloud.tencent.com/document/product/269/3794'
+  spec.documentation_url = 'https://cloud.tencent.com/document/product/269/9147'
   spec.authors      = 'tencent video cloud'
   spec.summary      = 'TXIMSDK_TUIKit_iOS'
   spec.xcconfig     = { 'VALID_ARCHS' => 'armv7 arm64 x86_64', }
