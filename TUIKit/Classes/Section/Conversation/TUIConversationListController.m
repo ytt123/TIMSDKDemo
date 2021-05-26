@@ -94,17 +94,68 @@ static NSString *kConversationCell_ReuseId = @"TConversationCell";
 {
     return NO;
 }
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    
+    UITableViewRowAction * action1 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         [tableView beginUpdates];
         TUIConversationCellData *conv = self.viewModel.dataList[indexPath.row];
         [self.viewModel removeData:conv];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationNone];
         [tableView endUpdates];
-    }
+          
+    }];
+    action1. backgroundColor=GRTColor(0xf64e4b);
+    
+    
+    TUIConversationCellData *conv = self.viewModel.dataList[indexPath.row];
+
+    
+
+    int unreadCount=conv.unreadCount;
+    BOOL isOnTop =conv.isOnTop;
+    
+    UITableViewRowAction * action2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:unreadCount?@"标为已读":@"标为未读" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+
+        [tableView beginUpdates];
+        TUIConversationCellData *conv = self.viewModel.dataList[indexPath.row];
+ 
+        if(unreadCount){
+            conv.unreadCount=0;
+        }else{
+            conv.unreadCount=1;
+        }
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationNone];
+        [tableView endUpdates];
+        
+    }];
+    action2. backgroundColor=GRTColor(0xf0913e);
+    UITableViewRowAction * action3 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:isOnTop?@"取消置顶":@"设为置顶" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        [tableView beginUpdates];
+        TUIConversationCellData *conv = self.viewModel.dataList[indexPath.row];
+ 
+        if(isOnTop){
+            conv.isOnTop=false;
+        }else{
+            conv.isOnTop=true;
+        }
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationNone];
+        [tableView endUpdates];
+    }];
+    action3. backgroundColor=GRTColor(0x434343);
+    return @[action1, action2, action3];
+
 }
+// - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+// {
+//     if (editingStyle == UITableViewCellEditingStyleDelete) {
+//         [tableView beginUpdates];
+//         TUIConversationCellData *conv = self.viewModel.dataList[indexPath.row];
+//         [self.viewModel removeData:conv];
+//         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationNone];
+//         [tableView endUpdates];
+//     }
+// }
 
 - (void)didSelectConversation:(TUIConversationCell *)cell
 {
