@@ -52,8 +52,8 @@
         NSMutableArray *moreMenus = [NSMutableArray array];
         [moreMenus addObject:[TUIInputMoreCellData photoData]];
         [moreMenus addObject:[TUIInputMoreCellData pictureData]];
-        [moreMenus addObject:[TUIInputMoreCellData videoData]];
-        [moreMenus addObject:[TUIInputMoreCellData fileData]];
+//         [moreMenus addObject:[TUIInputMoreCellData videoData]];
+//         [moreMenus addObject:[TUIInputMoreCellData fileData]];
         [moreMenus addObject:[TUIInputMoreCellData videoCallData]];
         [moreMenus addObject:[TUIInputMoreCellData audioCallData]];
         if ([TUIKit sharedInstance].config.enableGroupLiveEntry && conversationData.groupID.length > 0) {
