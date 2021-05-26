@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "TContactViewModel.h"
-
+//索引
+#import "SCIndexViewConfiguration.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /**
