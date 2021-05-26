@@ -22,7 +22,8 @@
 #import "TUIContactActionCell.h"
 #import "UIColor+TUIDarkMode.h"
 #import "NSBundle+TUIKIT.h"
-
+//索引
+#import "UITableView+SCIndexView.h"
 @import ImSDK;
 
 #define kContactCellReuseId @"ContactCellReuseId"
@@ -66,10 +67,16 @@
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    [_tableView setSectionIndexBackgroundColor:[UIColor clearColor]];
+//    [_tableView setSectionIndexBackgroundColor:[UIColor clearColor]];
     _tableView.contentInset = UIEdgeInsetsMake(0, 0, 8, 0);
-    [_tableView setSectionIndexColor:[UIColor darkGrayColor]];
+//    [_tableView setSectionIndexColor:[UIColor darkGrayColor]];
     [_tableView setBackgroundColor:self.view.backgroundColor];
+    //索引设置
+    SCIndexViewConfiguration *indexViewConfiguration = [SCIndexViewConfiguration configuration];
+    indexViewConfiguration.indexItemSelectedBackgroundColor=[UIColor redColor];
+    _tableView.sc_indexViewConfiguration = indexViewConfiguration;
+    _tableView.sc_translucentForTableViewInNavigationBar = YES;
+
     [self.view addSubview:_tableView];
      
     //cell无数据时，不显示间隔线
@@ -92,6 +99,11 @@
         @strongify(self)
         if ([(NSNumber *)finished boolValue]) {
             [self.tableView reloadData];
+            //索引数据源设置
+            NSMutableArray *array = [NSMutableArray arrayWithObject:@""];
+            [array addObjectsFromArray:self.viewModel.groupList];
+            self.tableView.sc_indexViewDataSource = array;
+            
         }
     }];
     [RACObserve(self.viewModel, pendencyCnt) subscribeNext:^(NSNumber *x) {
@@ -171,11 +183,11 @@
     return 33;
 }
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    NSMutableArray *array = [NSMutableArray arrayWithObject:@""];
-    [array addObjectsFromArray:self.viewModel.groupList];
-    return array;
-}
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+//    NSMutableArray *array = [NSMutableArray arrayWithObject:@""];
+//    [array addObjectsFromArray:self.viewModel.groupList];
+//    return array;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
