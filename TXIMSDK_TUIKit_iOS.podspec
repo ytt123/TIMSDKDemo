@@ -8,8 +8,8 @@ Pod::Spec.new do |spec|
         copyright 2017 tencent Ltd. All rights reserved.
         LICENSE
        }
-  spec.homepage     = 'https://cloud.tencent.com/document/product/269/3794'
-  spec.documentation_url = 'https://cloud.tencent.com/document/product/269/9147'
+#   spec.homepage     = 'https://cloud.tencent.com/document/product/269/3794'
+#   spec.documentation_url = 'https://cloud.tencent.com/document/product/269/9147'
   spec.authors      = 'tencent video cloud'
   spec.summary      = 'TXIMSDK_TUIKit_iOS'
   spec.xcconfig     = { 'VALID_ARCHS' => 'armv7 arm64 x86_64', }
@@ -25,12 +25,12 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
 
   spec.source = { :http => ''}
-  spec.source_files = '**/TUIKit/Classes/**/*.{h,m,mm}'
+  spec.source_files = 'TUIKit/Classes/**/*.{h,m,mm}'
   # spec.vendored_frameworks = ''
-  spec.vendored_libraries = ['**/TUIKit/Classes/third/voiceConvert/opencore-amrnb/libopencore-amrnb.a', '**/TUIKit/Classes/third/voiceConvert/opencore-amrwb/libopencore-amrwb.a']
-  spec.resource = ['**/TUIKit/Resources/TUIKitFace.bundle','**/TUIKit/Resources/TUIKitResource.bundle']
+  spec.vendored_libraries = ['TUIKit/Classes/third/voiceConvert/opencore-amrnb/libopencore-amrnb.a', 'TUIKit/Classes/third/voiceConvert/opencore-amrwb/libopencore-amrwb.a']
+  spec.resource = ['TUIKit/Resources/TUIKitFace.bundle','TUIKit/Resources/TUIKitResource.bundle']
   spec.resource_bundles = {
-    'TUIKitLocalizable' => ['**/TUIKit/Resources/Localizable/*']
+    'TUIKitLocalizable' => ['TUIKit/Resources/Localizable/*']
   }
   spec.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
