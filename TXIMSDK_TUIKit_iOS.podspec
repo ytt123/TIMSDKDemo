@@ -24,7 +24,7 @@ Pod::Spec.new do |spec|
   
   spec.requires_arc = true
 
-  spec.source = { :http => 'https://imsdk-1252463788.cos.ap-guangzhou.myqcloud.com/5.1.50/TIM_SDK_TUIKIT_iOS_latest_framework.zip'}
+  spec.source = { :http => ''}
   spec.source_files = '**/TUIKit/Classes/**/*.{h,m,mm}'
   # spec.vendored_frameworks = ''
   spec.vendored_libraries = ['**/TUIKit/Classes/third/voiceConvert/opencore-amrnb/libopencore-amrnb.a', '**/TUIKit/Classes/third/voiceConvert/opencore-amrwb/libopencore-amrwb.a']
